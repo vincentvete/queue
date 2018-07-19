@@ -250,6 +250,8 @@ class Worker
             $this->exceptions->report($e = new FatalThrowableError($e));
 
             $this->stopWorkerIfLostConnection($e);
+        } finally {
+            DB::rollback();
         }
     }
 
